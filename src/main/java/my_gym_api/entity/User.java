@@ -3,21 +3,23 @@ package my_gym_api.entity;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 public class User {
     @Id
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password_hash")
+    @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
     @Column(name = "created_at")
@@ -31,7 +33,8 @@ public class User {
         return email;
     }
 
-    public String getPassword() {
+    @JsonIgnore
+    public String getPasswordHash() {
         return passwordHash;
     }
 
@@ -47,7 +50,7 @@ public class User {
         this.email = email;
     }
 
-    public void setPassword(String passwordHash) {
+    public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
 
