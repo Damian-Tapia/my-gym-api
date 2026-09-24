@@ -12,14 +12,46 @@ import jakarta.persistence.Table;
 @Table(name = "User")
 public class User {
     @Id
-    private UUID    id;
-    
+    private UUID id;
+
     @Column(nullable = false)
-    private String  email;
+    private String email;
 
     @Column(name = "password_hash")
     private String passwordHash;
 
-    @Column(name="created_at")
-    private OffsetDateTime    createdAt;
+    @Column(name = "created_at")
+    private OffsetDateTime createdAt;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return passwordHash;
+    }
+
+    public OffsetDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public void setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }
