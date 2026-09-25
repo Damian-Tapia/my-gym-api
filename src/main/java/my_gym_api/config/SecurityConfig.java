@@ -1,6 +1,5 @@
 package my_gym_api.config;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,9 +23,9 @@ public class SecurityConfig {
         http
         .csrf(csrf -> csrf.disable())
         .sessionManagement(session -> session
-            .sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/api/auth").permitAll()
+            .requestMatchers("/api/auth/**", "/error").permitAll()
             .anyRequest().authenticated());
         return http.build();
     }
